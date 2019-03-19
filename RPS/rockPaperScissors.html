@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Rock Paper Scissors Part 1</title>
+</head>
+
+<body>
+  <div class="container">
+  <h1>Rock, Paper Scissors Game</h1>
+  <p>Press r for rock, p for paper and s for scissors to play the game!</p>
+  <p>Computer will pick at random when you press a key</p>
+  <div id="game">
+
+  </div>
+  </div>
+
+  <script type="text/javascript">
+    // Whenever a key is pressed, alert "pressed a button".
+
+    
+    let rps = ["r", "p", "s"];
+    let wins = 0;
+    let losses = 0;
+    let ties = 0;
+    let gameHTML = document.getElementById("game");
+
+
+    document.onkeyup = function(event) {
+
+      let user = event.key;
+      let userChose;
+      let computerGuess;
+      console.log(event);
+
+      let computer = rps[Math.floor(Math.random() * rps.length)];
+      console.log( "User selected: " + user);
+      console.log( "Computer selected: " + computer);
+
+
+      if (user === computer){
+        ties++;
+      }
+      else if(user === "r" && computer === "s"){
+        wins++;
+      }
+      else if(user === "p" && computer === "s"){
+        losses++;
+      }
+      else if(user === "s" && computer === "r"){
+        losses++;
+      }
+      else if(user ==="s" && computer === "p"){
+        wins++;
+      }
+      else if(user === "r" && computer === "p"){
+        losses++;
+      }
+      else if(user ==="p" && computer === "r"){
+        wins++;
+      }
+      // else{
+      //   alert("Select r, p, or s");
+      // }
+
+      if(user !== "r" && user !== "p" && user !== "s"){
+        alert("Select r, p, or s!");
+      }
+
+      
+      if(user==="r"){
+        userChose = "rock";
+      }
+      if(user==="p"){
+        userChose = "paper";
+      }
+      if(user==="s"){
+        userChose = "scissors";
+      }
+      if(computer==="r"){
+        computerGuess = "rock";
+      }
+      if(computer==="p"){
+        computerGuess = "paper";
+      }
+      if(computer==="s"){
+        computerGuess = "scissors";
+      }
+
+      gameHTML.innerHTML = `You Guessed: ${userChose}<br/>
+      Computer Guessed: ${computerGuess}<br/>
+
+      Wins: ${wins}<br/>
+      Losses: ${losses}<br/>
+      Ties: ${ties}
+      `
+
+    
+    };
+  </script>
+
+</body>
+
+</html>
